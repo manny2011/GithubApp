@@ -18,6 +18,8 @@ export function receiveDataSuccess(tabName, data, pageSize) {
         isLoading: false,
         data: pageSize > data.items.length ? data.items:data.items.slice(0,pageSize),
         items: data.items,
+        pageIndex:1,
+        hasMore:true,
     };
 }
 
@@ -29,12 +31,15 @@ export function requestLoadMoreData(tabName) {
     };
 }
 
-export function loadMoreDataSuccess(tabName, data) {//此数据包括之前已显示的数据，直接替换而不是拼接
+export function loadMoreDataSuccess(tabName, data,pageIndex) {//此数据包括之前已显示的数据，直接替换而不是拼接
     return {
         type: types.LOAD_MORE_DATA_SUCCESS,
         tabName: tabName,
         data: data,
         isLoadingMore: false,
+        pageIndex:pageIndex,//当前加载到的页数
+        hasMore:true,
+
     };
 }
 
@@ -43,6 +48,7 @@ export function loadMoreDataFailed(tabName) {
         type: types.LOAD_MORE_DATA_Fail,
         tabName: tabName,
         isLoadingMore: false,
+        hasMore:false,
     };
 }
 
@@ -85,14 +91,14 @@ export function LoadMoreData(tabName, pageIndex, pageSize, rawItems) {
     return dispatch => {
         dispatch(requestLoadMoreData(tabName));
         setTimeout(() => {
-            if ((pageIndex + 1) * pageSize < rawItems.size) {//还有更多
+            if (pageIndex * pageSize < rawItems.length) {//还有更多
                 pageIndex++;
                 let max = pageIndex * pageSize > rawItems.size ? rawItems.size : pageIndex * pageSize;
-                dispatch(loadMoreDataSuccess(tabName, rawItems.slice(0, max)));
+                dispatch(loadMoreDataSuccess(tabName, rawItems.slice(0, max),pageIndex));
             } else {//已加载完所有
                 dispatch(loadMoreDataFailed(tabName));
             }
-        }, 500);
+        }, 1000);
 
     };
 }

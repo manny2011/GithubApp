@@ -21,6 +21,10 @@ import ListItem from '../common/ListItem';
  *  3.applyMiddleWare中间件的支持
  *  4.绑定组件，即封装展示型组件--->窗口型组件。
  *  https://api.github.com/search/repositories?q=java&sort=stars
+ *
+ *  目前这种写法应该是有问题的，刷新时，导致其它列表界面重新渲染了一遍。
+ *  因为共用了一个更新共同的一个state:loadDataForPopularPageTab
+ *
  */
 
 const API_URL = 'https://api.github.com/search/repositories?q=';
@@ -81,10 +85,24 @@ class PopularTab1 extends Component {
         this._loadData();
     }
 
+    _getPartialState() {
+        const {loadDataForPopularPageTab, tabName} = this.props;
+        let partialState = loadDataForPopularPageTab[tabName];
+        return partialState;
+    }
+
     _loadData() {
         const {dispatch, tabName} = this.props;
         let url = genFetchUrl(tabName);
-        dispatch(actions.fetchData(tabName, url,PAGE_SIZE));//发起异步action
+        dispatch(actions.fetchData(tabName, url, PAGE_SIZE));//发起异步action
+    }
+
+    _loadMoreData() {
+        console.log('load more');
+        const {dispatch, tabName} = this.props;
+        let partialState = this._getPartialState();
+        const {items} = partialState;
+        dispatch(actions.LoadMoreData(tabName, partialState.pageIndex, PAGE_SIZE, items));
     }
 
     render() {
@@ -111,8 +129,16 @@ class PopularTab1 extends Component {
                         onRefresh={() => this._loadData()}/>
                 }
                 ListFooterComponent={this._getFooter()}
-                onEndReached={this._loadMoreData()}
-                onEndReachedThreshold={0.5}
+                onEndReached={() => {
+                    if (!this.onEndReachedCalledDuringMomentum) {
+                        this._loadMoreData();
+                        this.onEndReachedCalledDuringMomentum = true;
+                    }
+                }}
+                onEndReachedThreshold={0.1}
+                onMomentumScrollBegin={() => {
+                    this.onEndReachedCalledDuringMomentum = false;
+                }}
             />
 
         </View>;
@@ -125,25 +151,23 @@ class PopularTab1 extends Component {
         </View>;
     }
 
-    _loadMoreData() {
-        console.log('load more');
-        // return undefined;
-    }
-
     _getFooter() {
-        return (<View>
+        let getPartialState = this._getPartialState();
+        const {hasMore} = getPartialState;
+        return hasMore ? (<View>
             <ActivityIndicator
                 size={'large'}
                 color={'blue'}/>
-            <Text style={{alignSelf:'center'}}>正在加载</Text>
-        </View>);
+            <Text style={{alignSelf: 'center'}}>正在加载</Text>
+        </View>) : null;
     }
 }
 
 const mapState2Props = state => ({//这应该是最外层 的那个state树对象。
     loadDataForPopularPageTab: state.loadDataForPopularPageTab,
 });
-const TabContainer = connect(mapState2Props)(PopularTab1);
+
+const TabContainer = connect(mapState2Props)(PopularTab1);//变成容器型组件
 
 const styles = StyleSheet.create({
     container: {

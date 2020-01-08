@@ -6,6 +6,7 @@ import loadDataForPopularPageTab from './popularPage/index';
 
 //这样来看其实都是一个层级的树
 /**
+ * {//最外层state树
  * theme:{
  *
  * },
@@ -15,7 +16,7 @@ import loadDataForPopularPageTab from './popularPage/index';
  * xxx:{
  *
  * }
- *
+ * }
  * 而对于任意一个绑定的组件，你要绑定state树中的哪一小部分state对象呢？
  * 这个 由你决定，具体如何 决定呢？在哪里决定呢？
  * mapState2Props 这里决定你要取state中的哪部分对象来给自己的组件使用呢？

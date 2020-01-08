@@ -13,20 +13,21 @@
  *     tab1:{
  *          isLoading:false,
  *          isLoadingMore:false,
- *          data:{}
+ *          data:[]
  *          items:[],
  *     },
  *     tab2:{
  *          isLoading:false,
  *          isLoadingMore:false,
- *          data:{}
+ *          data:[]
  *          items:[],
+ *          pageIndex:0,//当前加载到的页数
  *     }
  * }
  */
 import types from '../../action/types';
 
-export default function onAction(state = {}, action) {
+export default function onAction(state = {}, action) {//只有在undefined时，都会触发取默认参数
     const {tabName,type} = action;//取出是哪个tab的操作
     switch (type) {
         case types.REQUEST_DATA:
@@ -49,6 +50,8 @@ export default function onAction(state = {}, action) {
                         isLoading: false,
                         data: action.data,//目前要显示的数据
                         items:action.items,//items是全数据
+                        pageIndex:action.pageIndex,
+                        hasMore:action.hasMore,
                     },
                 });
             //上下两种写法都行。
@@ -85,6 +88,8 @@ export default function onAction(state = {}, action) {
                     ...state[tabName],
                     isLoadingMore:false,
                     data:action.data,
+                    pageIndex:action.pageIndex,
+                    hasMore:action.hasMore,
                 }
             };
         case types.LOAD_MORE_DATA_Fail:
@@ -93,6 +98,7 @@ export default function onAction(state = {}, action) {
                 [tabName]:{
                     ...state[tabName],
                     isLoadingMore:false,
+                    hasMore:action.hasMore,
                 }
             };
         default:
