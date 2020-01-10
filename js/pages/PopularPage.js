@@ -13,6 +13,7 @@ import {
 import {connect} from 'react-redux';
 import actions from '../action/index';//导包+解构遇到的问题，何时用解构，何时直接用变量
 import ListItem from '../common/ListItem';
+import NavigationBar from '../common/NavigationBar';
 
 /**
  * 引入async action Creator，给thunk中间件处理。
@@ -68,6 +69,8 @@ export default class PopularPage extends Component {
                 },
             }));
         return <View style={{flex: 1}}>
+            <NavigationBar statusBar={{barStyle:'default',backgroundColor: 'green',hidden:false}}
+                title={'最热'}/>
             <TopNav/>
         </View>;
     }
