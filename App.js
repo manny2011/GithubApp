@@ -44,7 +44,6 @@ const MainNav = createStackNavigator({
     },
 }, {
     initialRouteName: 'Home',
-
 });
 
 // const LoginNav = createStackNavigator({}, {});
