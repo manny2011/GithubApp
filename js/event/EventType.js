@@ -1,0 +1,2 @@
+
+export const Event_Type_Trending_Page_Change_Date_Range = 'Event_Type_Trending_Page_Change_Date_Range';

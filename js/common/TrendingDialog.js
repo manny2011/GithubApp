@@ -48,6 +48,7 @@ export default class TrendingDialog extends Component {
         this.props.onSelect(tab);
         // Alert.alert(tab.tabName);
         this.setModalVisible(false);
+
     }
 }
 

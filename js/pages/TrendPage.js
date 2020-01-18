@@ -9,6 +9,8 @@ import {
     ToastAndroid,
     TouchableOpacity,
     View,
+    DeviceEventEmitter,
+
 } from 'react-native';
 import TestPage from '../pages/TestPage';
 import {connect} from 'react-redux';
@@ -23,20 +25,30 @@ import SplashPage from './SplashPage';
 import TrendingDialog from '../common/TrendingDialog';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {TimeSpans} from '../common/TrendingDialog';
-
+import {Event_Type_Trending_Page_Change_Date_Range} from '../event/EventType';
 const API_URL = 'https://github.com/trending/';
 const PAGE_SIZE = 8;//设置常量
 
 class TrendTab extends Component {
     constructor(props) {
         super(props);
-        const {tabName,timeSpan} = props;
+        const {tabName, timeSpan} = props;
         this.tabName = tabName;//做成一个对象的成员属性
         this.timeSpan = timeSpan;
     }
 
     componentDidMount(): void {
         this._loadData();
+        this.eventListener = DeviceEventEmitter.addListener(Event_Type_Trending_Page_Change_Date_Range,timeSpan=>{
+            this.timeSpan = timeSpan;
+            this._loadData();
+        });
+    }
+
+    componentWillUnmount(): void {
+        if(this.eventListener){
+            this.eventListener.remove();
+        }
     }
 
     _getPartialState() {
@@ -45,7 +57,7 @@ class TrendTab extends Component {
     }
 
     genFetchUrl(language) {
-        return API_URL + language+'?'+this.timeSpan.searchText;
+        return API_URL + language + '?' + this.timeSpan.searchText;
     }
 
     _loadData() {
@@ -133,23 +145,9 @@ class TrendPage extends Component {
         return routes;
     }
 
-
     render() {
-        const Nav = createAppContainer(createMaterialTopTabNavigator(this._getTabs(),{
-            tabBarOptions:{
-                scrollEnabled:true,
-                tabStyle:{
-                    height:40,
-                },
-                indicatorStyle:{
-                    height:2,
-                },
-            },
-            tabBarPosition:'top',
-
-        }));
-
-        return (<View style={{flex:1}}>
+        const Nav = this.genNav();
+        return (<View style={{flex: 1}}>
             {/*一字之差导致的错误，styles vs style,查一下《view>默认使用多在的属性值，*/}
             <NavigationBar leftView={this.renderLeftView()}
                            titleView={this.renderTitleView()}//必须加括号，否则不执行
@@ -161,6 +159,26 @@ class TrendPage extends Component {
         </View>);
     }
 
+    genNav() {
+        if (this.Nav) {
+            return this.Nav;
+        }
+        this.Nav = createAppContainer(createMaterialTopTabNavigator(this._getTabs(), {
+            tabBarOptions: {
+                scrollEnabled: true,
+                tabStyle: {
+                    height: 40,
+                },
+                indicatorStyle: {
+                    height: 2,
+                },
+            },
+            tabBarPosition: 'top',
+
+        }));
+        return this.Nav;
+    }
+
     renderLeftView() {
         return <TouchableOpacity underlayColor={'#999'} onPress={() => ToastAndroid.show('go back', 300)}>
             <Icon name={'arrowleft'} size={20} color={'black'}/>
@@ -169,21 +187,21 @@ class TrendPage extends Component {
 
     renderTitleView() {
         return <TouchableOpacity
-                underlayColor='transparent'
-                onPress={() => this.dialog.setModalVisible(true)}>
-                <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                    <Text style={{
-                        fontSize: 18,
-                        color: '#FFFFFF',
-                        fontWeight: '400',
-                    }}>趋势 {this.state.timeSpan.showText}</Text>
-                    <MaterialIcons
-                        name={'arrow-drop-down'}
-                        size={22}
-                        style={{color: 'white'}}
-                    />
-                </View>
-            </TouchableOpacity>;
+            underlayColor='transparent'
+            onPress={() => this.dialog.setModalVisible(true)}>
+            <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                <Text style={{
+                    fontSize: 18,
+                    color: '#FFFFFF',
+                    fontWeight: '400',
+                }}>趋势 {this.state.timeSpan.showText}</Text>
+                <MaterialIcons
+                    name={'arrow-drop-down'}
+                    size={22}
+                    style={{color: 'white'}}
+                />
+            </View>
+        </TouchableOpacity>;
     }
 
     renderTrendingDialog() {
@@ -198,6 +216,7 @@ class TrendPage extends Component {
         this.setState({
             timeSpan: tab,
         });
+        DeviceEventEmitter.emit(Event_Type_Trending_Page_Change_Date_Range, tab);
     }
 }
 
