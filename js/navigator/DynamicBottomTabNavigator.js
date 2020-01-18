@@ -92,7 +92,7 @@ class DynamicBottomTabNavigator extends React.Component {
         });
         //对于JSX语法，return 返回的对象必须是一个<View></View>jsx对象，
         // 或者是一个自定义组件<SomeComponent/>
-        this.nav = createAppContainer(topNav);
+        this.nav = createAppContainer(topNav);//此处包装后就是一个Component,<Component/>如此引用
         return <this.nav/>;
     }
 }

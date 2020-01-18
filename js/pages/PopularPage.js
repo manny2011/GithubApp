@@ -20,7 +20,7 @@ import NavigationBar from '../common/NavigationBar';
  * .1.定义同步action
  *  2.定义异步action函数，返回值为函数
  *  3.applyMiddleWare中间件的支持
- *  4.绑定组件，即封装展示型组件--->窗口型组件。
+ *  4.绑定组件，即封装展示型组件--->容器型组件。
  *  https://api.github.com/search/repositories?q=java&sort=stars
  *
  *  目前这种写法应该是有问题的，刷新时，导致其它列表界面重新渲染了一遍。
@@ -46,7 +46,7 @@ export default class PopularPage extends Component {
         let routes = {};
         this.tabNames.forEach((item, index) => {
             routes[`tab${index}`] = {
-                screen: props => <TabContainer {...props} tabName={item}/>,
+                screen: props => <TabContainer {...props} tabName={item}/>,//此处又为prop添加了一个新属性
                 navigationOptions: {
                     tabBarLabel: item,
                 },
@@ -76,6 +76,7 @@ export default class PopularPage extends Component {
     }
 }
 
+//展示型组件
 class PopularTab1 extends Component {
 
     constructor(props) {
@@ -118,7 +119,6 @@ class PopularTab1 extends Component {
         const {isLoading, data} = partialState;
 
         return <View style={styles.container}>
-            {/*<Text>{'this is textview'}</Text>*/}
             <FlatList
                 data={data}
                 renderItem={({item}) => <ListItem item={item}/>}
@@ -167,9 +167,10 @@ class PopularTab1 extends Component {
 }
 
 const mapState2Props = state => ({//这应该是最外层 的那个state树对象。
-    loadDataForPopularPageTab: state.loadDataForPopularPageTab,
+    loadDataForPopularPageTab: state.loadDataForPopularPageTab,//为展示型组件的prop对象添加新属性，类同Object.assign({},oldProp,newPropObj);
 });
 
+//容器型组件
 const TabContainer = connect(mapState2Props)(PopularTab1);//变成容器型组件
 
 const styles = StyleSheet.create({

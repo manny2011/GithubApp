@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import loadData from '../storeage/index';
 import {View, Text, Button} from 'react-native';
 import NavigationBar from '../common/NavigationBar';
+import ModalExample from '../common/ModalExample';
 
 export default class CollectionPage extends Component {
     constructor(props) {
@@ -16,6 +17,7 @@ export default class CollectionPage extends Component {
             <NavigationBar title={'收藏'} />
             <Button title={'get data'} onPress={() => this._loadData()}/>
             <Text>the response is :{this.state.data}</Text>
+            <ModalExample/>
         </View>);
     }
 

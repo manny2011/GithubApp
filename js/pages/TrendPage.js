@@ -20,19 +20,19 @@ import {createMaterialTopTabNavigator} from 'react-navigation-tabs';
 import {createAppContainer} from 'react-navigation';
 import TrendItem from '../common/TrendItem';
 import SplashPage from './SplashPage';
+import TrendingDialog from '../common/TrendingDialog';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import {TimeSpans} from '../common/TrendingDialog';
 
 const API_URL = 'https://github.com/trending/';
 const PAGE_SIZE = 8;//设置常量
 
-function genFetchUrl(language) {
-    return API_URL + language;
-}
-
 class TrendTab extends Component {
     constructor(props) {
         super(props);
-        const {tabName} = props;
+        const {tabName,timeSpan} = props;
         this.tabName = tabName;//做成一个对象的成员属性
+        this.timeSpan = timeSpan;
     }
 
     componentDidMount(): void {
@@ -44,9 +44,13 @@ class TrendTab extends Component {
         return loadDataForTrendingPageTab[tabName];
     }
 
+    genFetchUrl(language) {
+        return API_URL + language+'?'+this.timeSpan.searchText;
+    }
+
     _loadData() {
         const {dispatch, tabName} = this.props;
-        let url = genFetchUrl(tabName);
+        let url = this.genFetchUrl(tabName);
         dispatch(actions.trending_refresh_data(tabName, url, PAGE_SIZE));//发起异步action
     }
 
@@ -108,17 +112,19 @@ class TrendTab extends Component {
 }
 
 class TrendPage extends Component {
-
     constructor(props) {
         super(props);
         this.tabNames = ['CSS', 'Dart', 'Python', 'Java', 'JavaScript', 'Kotlin'];
+        this.state = {
+            timeSpan: TimeSpans[0],
+        };
     }
 
     _getTabs() {
         let routes = {};
         this.tabNames.forEach((item, index) => {
             routes[`tab${index}`] = {
-                screen: props => <TabContainer {...props} tabName={item}/>,
+                screen: props => <TabContainer {...props} tabName={item} timeSpan={this.state.timeSpan}/>,
                 navigationOptions: {
                     tabBarLabel: item,
                 },
@@ -146,11 +152,12 @@ class TrendPage extends Component {
         return (<View style={{flex:1}}>
             {/*一字之差导致的错误，styles vs style,查一下《view>默认使用多在的属性值，*/}
             <NavigationBar leftView={this.renderLeftView()}
-                           title={'趋势'}
+                           titleView={this.renderTitleView()}//必须加括号，否则不执行
                            statusBar={{barStyle: 'default', backgroundColor: '#2196f3', hidden: false}}/>
             {/*<Button title={'改变底部tab为红色'}*/}
             {/*        onPress={(event) => event && this.props.onThemeChange('green')}/>*/}
             <Nav/>
+            {this.renderTrendingDialog()}
         </View>);
     }
 
@@ -158,6 +165,39 @@ class TrendPage extends Component {
         return <TouchableOpacity underlayColor={'#999'} onPress={() => ToastAndroid.show('go back', 300)}>
             <Icon name={'arrowleft'} size={20} color={'black'}/>
         </TouchableOpacity>;
+    }
+
+    renderTitleView() {
+        return <TouchableOpacity
+                underlayColor='transparent'
+                onPress={() => this.dialog.setModalVisible(true)}>
+                <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                    <Text style={{
+                        fontSize: 18,
+                        color: '#FFFFFF',
+                        fontWeight: '400',
+                    }}>趋势 {this.state.timeSpan.showText}</Text>
+                    <MaterialIcons
+                        name={'arrow-drop-down'}
+                        size={22}
+                        style={{color: 'white'}}
+                    />
+                </View>
+            </TouchableOpacity>;
+    }
+
+    renderTrendingDialog() {
+        return <TrendingDialog
+            ref={dialog => this.dialog = dialog}
+            onSelect={tab => this.onSelectTimeSpan(tab)}
+        />;
+    }
+
+    onSelectTimeSpan(tab) {
+        // this.dialog.dismiss()
+        this.setState({
+            timeSpan: tab,
+        });
     }
 }
 
