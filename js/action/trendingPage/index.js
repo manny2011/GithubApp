@@ -2,6 +2,8 @@
 
 import types from '../types';
 import GitHubTrending from 'GitHubTrending/trending/GitHubTrending';
+import FavoriteDao from '../../dao/FavoriteDao';
+import {TRENDING} from '../../dao/FavoriteDao';
 
 export function requestData(tabName) {
     return {
@@ -17,10 +19,10 @@ export function receiveDataSuccess(tabName, data, pageSize) {
         tabName: tabName,
         isLoading: false,
         // data: pageSize > data.items.length ? data.items:data.items.slice(0,pageSize),
-        data:data,
+        data: data,
         items: data,
-        pageIndex:1,
-        hasMore:true,
+        pageIndex: 1,
+        hasMore: true,
     };
 }
 
@@ -40,14 +42,14 @@ export function requestLoadMoreData(tabName) {
     };
 }
 
-export function loadMoreDataSuccess(tabName, data,pageIndex) {//此数据包括之前已显示的数据，直接替换而不是拼接
+export function loadMoreDataSuccess(tabName, data, pageIndex) {//此数据包括之前已显示的数据，直接替换而不是拼接
     return {
         type: types.TRENDING_LOAD_MORE_DATA_SUCCESS,
         tabName: tabName,
         data: data,
         isLoadingMore: false,
-        pageIndex:pageIndex,//当前加载到的页数
-        hasMore:true,
+        pageIndex: pageIndex,//当前加载到的页数
+        hasMore: true,
 
     };
 }
@@ -57,7 +59,7 @@ export function loadMoreDataFailed(tabName) {
         type: types.TRENDING_LOAD_MORE_DATA_Fail,
         tabName: tabName,
         isLoadingMore: false,
-        hasMore:false,
+        hasMore: false,
     };
 }
 
@@ -67,9 +69,12 @@ export function trending_refresh_data(tabName, url, pageSize) {//刷新数据
     return dispatch => {
         dispatch(requestData(tabName));
         new GitHubTrending().fetchTrending(url)
-            .then((data)=> {//Array[25]
-                dispatch(receiveDataSuccess(tabName, data, pageSize));
-            }).catch((error)=> {
+            .then((data) => {//Array[25]
+                handleDataWithFavoriteCheck(data,processedData =>{
+                    dispatch(receiveDataSuccess(tabName, processedData, pageSize));
+                });
+                // dispatch(receiveDataSuccess(tabName, data, pageSize));
+            }).catch((error) => {
             console.log('An error occurred.', error);
             dispatch(receiveDataFail(tabName));
         });
@@ -90,6 +95,23 @@ export function trending_refresh_data(tabName, url, pageSize) {//刷新数据
     };
 }
 
+function handleDataWithFavoriteCheck(data,callback) {//Array[] 在此处对data array进行是否收藏进行处理，添加isFavorite字段
+    new FavoriteDao(TRENDING).getFavoriteKeys()
+        .then(favoriteKeys => {
+            for (let i = 0; i < data.length; i++) {
+                data[i].isFavorite = false;
+                for (let j = 0; j < favoriteKeys.length; j++) {
+                    if (favoriteKeys[j] === data[i].fullName) {
+                        data[i].isFavorite = true;
+                        break;
+                    }
+                }
+            }
+            callback(data);
+        });
+
+}
+
 /**
  *
  * @param tabName 标签名
@@ -106,7 +128,7 @@ export function trending_load_more_data(tabName, pageIndex, pageSize, rawItems) 
             if (pageIndex * pageSize < rawItems.length) {//还有更多
                 pageIndex++;
                 let max = pageIndex * pageSize > rawItems.size ? rawItems.size : pageIndex * pageSize;
-                dispatch(loadMoreDataSuccess(tabName, rawItems.slice(0, max),pageIndex));
+                dispatch(loadMoreDataSuccess(tabName, rawItems.slice(0, max), pageIndex));
             } else {//已加载完所有
                 dispatch(loadMoreDataFailed(tabName));
             }

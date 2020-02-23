@@ -25,6 +25,7 @@ import HomePage from './js/pages/HomePage';
 import {createStore, applyMiddleware} from 'redux';
 import rootReducers from './js/reducer/index';
 import store from './js/store/index';
+import DetailPage from './js/pages/DetailPage';
 
 const InitNav = createStackNavigator({
     Splash: {
@@ -42,6 +43,12 @@ const MainNav = createStackNavigator({
             header: null,
         },
     },
+    DetailPage:{
+        screen:DetailPage,
+        navigationOptions:{
+            header:null,
+        }
+    }
 }, {
     initialRouteName: 'Home',
 });

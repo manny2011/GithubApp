@@ -26,6 +26,9 @@ import TrendingDialog from '../common/TrendingDialog';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {TimeSpans} from '../common/TrendingDialog';
 import {Event_Type_Trending_Page_Change_Date_Range} from '../event/EventType';
+import NavigationUtil from '../common/NavigationUtil';
+
+
 const API_URL = 'https://github.com/trending/';
 const PAGE_SIZE = 8;//设置常量
 
@@ -86,7 +89,7 @@ class TrendTab extends Component {
         return <View style={styles.container}>
             <FlatList
                 data={data}
-                renderItem={({item}) => <TrendItem item={item}/>}
+                renderItem={({item}) => <TrendItem item={item} onItemPress={item=>{this.onItemPress(item,'DetailPage')}}/>}
                 keyExtractor={(item) => item.fullName}
                 refreshControl={
                     <RefreshControl
@@ -120,6 +123,13 @@ class TrendTab extends Component {
                 color={'blue'}/>
             <Text style={{alignSelf: 'center'}}>正在加载</Text>
         </View>) : null;
+    }
+
+    onItemPress(item,page) {
+        // let navigate = this.props.navigation.navigate(page);
+        // console.log("navigation result: "+navigate);
+        ToastAndroid.show(page,200);
+        NavigationUtil.navigation.navigate(page,{projectModel:item});
     }
 }
 
@@ -181,7 +191,7 @@ class TrendPage extends Component {
 
     renderLeftView() {
         return <TouchableOpacity underlayColor={'#999'} onPress={() => ToastAndroid.show('go back', 300)}>
-            <Icon name={'arrowleft'} size={20} color={'black'}/>
+            <Icon name={'arrowleft'} size={20} color={'white'}/>
         </TouchableOpacity>;
     }
 

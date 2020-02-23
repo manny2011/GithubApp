@@ -31,6 +31,7 @@ export default class NavigationBar extends React.Component {
 
         containerStyle: ViewPropTypes.style,//传递过来style对象
         titleViewStyle: ViewPropTypes.style,//传递过来style对象
+        titleContainerStyle: ViewPropTypes.style,//传递过来style对象
 
     };
     // animated={true}
@@ -53,10 +54,11 @@ export default class NavigationBar extends React.Component {
             </View>);
         let titleView = this.props.titleView ? this.props.titleView :
             <Text ellipsizeMode={'middle'} numberOfLines={1} style={styles.title}>{this.props.title}</Text>;
+
         let content = this.props.isNavHidden ? null :
             (<View style={styles.navStyle}>
                 {this.getLeftView(this.props.leftView)}
-                <View style={styles.titleContainer}>
+                <View style={{...styles.titleContainer,...this.props.titleContainerStyle}}>
                     {titleView}
                 </View>
                 {this.props.rightView}
@@ -81,14 +83,14 @@ const styles = StyleSheet.create({
     container:{
         backgroundColor: '#2196f3',
     },
-    titleContainer:{
+    titleContainer:{//关于这个布局，既有absolute,plus flex,
         position:'absolute',
         alignItems:'center',
         justifyContent:'center',
-        left:0,
-        right:0,
+        left:40,
+        right:40,
         top:0,
-        bottom:0
+        bottom:0,
     },
     leftViewStyle:{
         padding:10,
@@ -100,7 +102,7 @@ const styles = StyleSheet.create({
 
     },
     title: {
-        color: 'black',
+        color: 'white',
         fontSize: 20,
     },
     navStyle: {
