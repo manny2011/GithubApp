@@ -27,6 +27,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {TimeSpans} from '../common/TrendingDialog';
 import {Event_Type_Trending_Page_Change_Date_Range} from '../event/EventType';
 import NavigationUtil from '../common/NavigationUtil';
+import FavoriteDao, {TRENDING} from '../dao/FavoriteDao';
 
 
 const API_URL = 'https://github.com/trending/';
@@ -38,6 +39,7 @@ class TrendTab extends Component {
         const {tabName, timeSpan} = props;
         this.tabName = tabName;//做成一个对象的成员属性
         this.timeSpan = timeSpan;
+        this.favoriteDao = new FavoriteDao(TRENDING);
     }
 
     componentDidMount(): void {
@@ -89,7 +91,7 @@ class TrendTab extends Component {
         return <View style={styles.container}>
             <FlatList
                 data={data}
-                renderItem={({item}) => <TrendItem item={item} onItemPress={item=>{this.onItemPress(item,'DetailPage')}}/>}
+                renderItem={({item}) => <TrendItem item={item} favoriteDao = {this.favoriteDao} onItemPress={item=>{this.onItemPress(item,'DetailPage')}}/>}
                 keyExtractor={(item) => item.fullName}
                 refreshControl={
                     <RefreshControl

@@ -8,22 +8,20 @@ import {
     ToastAndroid,
 } from 'react-native';
 import FavoriteIcon from 'react-native-vector-icons/Entypo';
+import BaseItem from './BaseItem';
+import FavoriteDao, {POPULAR} from '../dao/FavoriteDao';
 
-export default class ListItem extends React.Component {
+export default class ListItem extends BaseItem {
 
     constructor(props) {
         super(props);
-        this.favorite = (<TouchableOpacity style={{padding: 10}}
-                                           onPress={() =>
-                                               ToastAndroid.show('Star Pressed', ToastAndroid.SHORT)}>
-            <FavoriteIcon name={'star-outlined'} color={'red'} size={22}/>
-        </TouchableOpacity>);
+        this._favoriteDao = props.favoriteDao;
     }
 
     render() {
         const {item, onItemPress} = this.props;
 
-        return (<TouchableOpacity>
+        return (<TouchableOpacity onPress = {() => onItemPress(item)}>
             <View style={styles.container}>
                 <Text style={styles.fullName}>
                     {item.full_name}
@@ -42,11 +40,10 @@ export default class ListItem extends React.Component {
                         Stars:{item.stargazers_count}
                     </Text>
 
-                    {this.favorite}
+                    {this._renderFavoriteButton()}
                 </View>
             </View>
         </TouchableOpacity>);
-
 
     }
 }

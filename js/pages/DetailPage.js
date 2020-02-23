@@ -23,8 +23,8 @@ export default class DetailPage extends Component {
         console.log(projectModel);
         this.state = {
             isFavorite: false,
-            url:TRENDING_URL+projectModel.url,
-            title:projectModel.fullName,
+            url:projectModel.html_url ? projectModel.html_url:(TRENDING_URL+projectModel.url),
+            title:projectModel.fullName || projectModel.full_name,
         };
         this._goBack = this.goBack.bind(this);//此处的function必须显式绑定下当前对象，否则在backHandler回调环境中的this已经不再是指向当前DetailPage对象了。
     }

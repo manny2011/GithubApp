@@ -15,7 +15,7 @@ export default class TrendItem extends BaseItem {
 
     constructor(props) {
         super(props);
-        this._favoriteDao =new FavoriteDao(TRENDING);
+        this._favoriteDao = props.favoriteDao;
     }
 
     render() {

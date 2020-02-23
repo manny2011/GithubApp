@@ -2,6 +2,7 @@
 
 import types from '../types';
 import {exp} from 'react-native-reanimated';
+import FavoriteDao, {POPULAR, TRENDING} from '../../dao/FavoriteDao';
 
 export function requestData(tabName) {
     return {
@@ -74,8 +75,32 @@ export function fetchData(tabName, url, pageSize) {
                 console.log('An error occurred.', err);
                 dispatch(receiveDataFail(tabName));
             })
-            .then(responseJson => dispatch(receiveDataSuccess(tabName, responseJson, pageSize)));
+            .then(data => {//data.items是真正的数据，此处为每一个item添加上isFavorite字段，标识是否已收藏
+                handleDataWithFavoriteCheck(data,(processedData)=>{
+                    dispatch(receiveDataSuccess(tabName, processedData, pageSize))
+                })
+            })
+            .catch(err=>{
+                console.log(err);
+            })
     };
+}
+
+function handleDataWithFavoriteCheck(data,callback) {//Array[] 在此处对data array进行是否收藏进行处理，添加isFavorite字段
+    new FavoriteDao(POPULAR).getFavoriteKeys()
+        .then(favoriteKeys => {
+            for (let i = 0; i < data.items.length; i++) {
+                data.items[i].isFavorite = false;
+                for (let j = 0; j < favoriteKeys.length; j++) {
+                    if (favoriteKeys[j] === data.items[i].id.toString()) {
+                        data.items[i].isFavorite = true;
+                        break;
+                    }
+                }
+            }
+            callback(data);
+        });
+
 }
 
 /**

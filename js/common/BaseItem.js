@@ -47,12 +47,13 @@ export default class BaseItem extends React.Component {
         ToastAndroid.show('Star Pressed', ToastAndroid.SHORT);
         this.setState({isFavorite: !this.state.isFavorite});
         this.props.item.isFavorite = !this.state.isFavorite;
+        let key  = this.props.item.fullName ? this.props.item.fullName:this.props.item.id.toString();
         if(this.props.item.isFavorite){
-            this._favoriteDao.saveFavoriteItem(this.props.item.fullName, JSON.stringify(this.props.item), error => {
+            this._favoriteDao.saveFavoriteItem(key , JSON.stringify(this.props.item), error => {
                 console.log(error);
             });
         }else{
-            this._favoriteDao.removeFavoriteItem(this.props.item.fullName);
+            this._favoriteDao.removeFavoriteItem(key);
         }
     }
 }

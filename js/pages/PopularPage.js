@@ -14,6 +14,8 @@ import {connect} from 'react-redux';
 import actions from '../action/index';//导包+解构遇到的问题，何时用解构，何时直接用变量
 import ListItem from '../common/ListItem';
 import NavigationBar from '../common/NavigationBar';
+import FavoriteDao, {POPULAR} from '../dao/FavoriteDao';
+import NavigationUtil from '../common/NavigationUtil';
 
 /**
  * 引入async action Creator，给thunk中间件处理。
@@ -69,8 +71,8 @@ export default class PopularPage extends Component {
                 },
             }));
         return <View style={{flex: 1}}>
-            <NavigationBar statusBar={{barStyle:'default',backgroundColor: 'green',hidden:false}}
-                title={'最热'}/>
+            <NavigationBar statusBar={{barStyle: 'default', backgroundColor: 'green', hidden: false}}
+                           title={'最热'}/>
             <TopNav/>
         </View>;
     }
@@ -83,6 +85,7 @@ class PopularTab1 extends Component {
         super(props);
         const {tabName} = props;
         this.tabName = tabName;//做成一个对象的成员属性
+        this.favoriteDao = new FavoriteDao(POPULAR);
     }
 
     componentDidMount(): void {
@@ -121,7 +124,8 @@ class PopularTab1 extends Component {
         return <View style={styles.container}>
             <FlatList
                 data={data}
-                renderItem={({item}) => <ListItem item={item}/>}
+                renderItem={({item}) => <ListItem item={item} favoriteDao={this.favoriteDao}
+                                                  onItemPress={item => NavigationUtil.navigation.navigate('DetailPage', {projectModel:item})}/>}
                 keyExtractor={(item) => item.id}
                 refreshControl={
                     <RefreshControl
