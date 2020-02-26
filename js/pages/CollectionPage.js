@@ -1,33 +1,46 @@
 import React, {Component} from 'react';
-import loadData from '../storeage/index';
 import {View, Text, Button} from 'react-native';
 import NavigationBar from '../common/NavigationBar';
-import ModalExample from '../common/ModalExample';
+import {createAppContainer} from "react-navigation";
+import {createMaterialTopTabNavigator} from 'react-navigation-tabs';
+import FavoriteTabPage from '../common/FavoriteTabPage';
+import {FLAG_STORAGE} from '../storeage';
+import FavoriteDao, {POPULAR, TRENDING} from '../dao/FavoriteDao';
 
 export default class CollectionPage extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            data: 'initial data',
-        };
     }
 
     render() {
-        return (<View>
+        const TopNav = createAppContainer(createMaterialTopTabNavigator(
+            {
+                "popular":{
+                    screen: props => <FavoriteTabPage {...props} flag={POPULAR}/>,
+                    navigationOptions:{
+                        tabBarLabel:"最新",
+                    }
+                },
+                "trending":{
+                    screen: props => <FavoriteTabPage {...props} flag={TRENDING}/>,
+                    navigationOptions:{
+                        tabBarLabel:"趋势",
+                    }
+                }
+            }, {
+                tabBarOptions: {
+                    indicatorStyle: {
+                        height: 2,
+                    },
+                    tabStyle: {
+                        minWidth: 50,
+                    },
+                    scrollEnabled: false,
+                },
+            }));
+        return (<View style={{flex:1}}>
             <NavigationBar title={'收藏'} />
-            <Button title={'get data'} onPress={() => this._loadData()}/>
-            <Text>the response is :{this.state.data}</Text>
-            <ModalExample/>
+            <TopNav/>
         </View>);
-    }
-
-    _loadData() {
-        const url = 'http://www.kuaidi100.com/query';
-        loadData(url)
-            .then(data => {
-                this.setState({data: JSON.stringify(data)});
-            }).catch(err => {
-            this.setState({data: err.toString()});
-        });
     }
 }

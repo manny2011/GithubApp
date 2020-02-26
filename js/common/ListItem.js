@@ -20,7 +20,7 @@ export default class ListItem extends BaseItem {
 
     render() {
         const {item, onItemPress} = this.props;
-
+        console.log(item);
         return (<TouchableOpacity onPress = {() => onItemPress(item)}>
             <View style={styles.container}>
                 <Text style={styles.fullName}>

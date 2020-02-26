@@ -8,6 +8,8 @@ import {AsyncStorage} from 'react-native';
  * then回调中如果抛出异常，直接会走后面的catch方法。
  */
 
+export const FLAG_STORAGE = {flag_popular: 'popular', flag_trending: 'trending'};
+
 export default function loadData(url) {
     return new Promise(((resolve, reject) => {
         loadDataFromLocal(url)

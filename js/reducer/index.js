@@ -4,6 +4,7 @@ import {combineReducers} from 'redux';
 import changeTheme from './theme/index';
 import loadDataForPopularPageTab from './popularPage/index';
 import loadDataForTrendingPageTab from './trendPage/index';
+import collectionData from './collection/index';
 
 //这样来看其实都是一个层级的树
 /**
@@ -15,6 +16,9 @@ import loadDataForTrendingPageTab from './trendPage/index';
  *
  * },
  * xxx:{
+ *
+ * },
+ * collectionData:{
  *
  * }
  * }
@@ -28,5 +32,6 @@ export default combineReducers({
     theme: changeTheme,//似乎这里就是redux的state TREE中，每个state所用的key哦！
     loadDataForPopularPageTab:loadDataForPopularPageTab,
     loadDataForTrendingPageTab:loadDataForTrendingPageTab,
+    collectionData:collectionData,
 });
 
