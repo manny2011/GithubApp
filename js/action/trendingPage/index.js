@@ -98,12 +98,14 @@ export function trending_refresh_data(tabName, url, pageSize) {//刷新数据
 function handleDataWithFavoriteCheck(data,callback) {//Array[] 在此处对data array进行是否收藏进行处理，添加isFavorite字段
     new FavoriteDao(TRENDING).getFavoriteKeys()
         .then(favoriteKeys => {
-            for (let i = 0; i < data.length; i++) {
-                data[i].isFavorite = false;
-                for (let j = 0; j < favoriteKeys.length; j++) {
-                    if (favoriteKeys[j] === data[i].fullName) {
-                        data[i].isFavorite = true;
-                        break;
+            if(favoriteKeys){
+                for (let i = 0; i < data.length; i++) {
+                    data[i].isFavorite = false;
+                    for (let j = 0; j < favoriteKeys.length; j++) {
+                        if (favoriteKeys[j] === data[i].fullName) {
+                            data[i].isFavorite = true;
+                            break;
+                        }
                     }
                 }
             }

@@ -79,17 +79,21 @@ export default class FavoriteDao {
         return new Promise((resolve, reject) => {
             this.getFavoriteKeys()
                 .then(keys => {
-                    AsyncStorage.multiGet(keys, ((errors, results) => {
-                        let favoriteItems = [];
-                        if (!errors) {
-                            //array.map的作用：对数组中的每个值应用一下回调函数，结果就是转换后的值
-                            //multiGet([key1,key2])=>[[key1,value1],[key2,value2]],如此转换关系而已... results is a [[],[],[]],二维数组
-                            results.map((value, index, arrays) => {
-                                favoriteItems.push(value[1]);
-                            });
-                        }
-                        resolve(favoriteItems);
-                    }));
+                    let favoriteItems = [];
+                    if(keys) {
+                        AsyncStorage.multiGet(keys, ((errors, results) => {
+                            if (!errors) {
+                                //array.map的作用：对数组中的每个值应用一下回调函数，结果就是转换后的值
+                                //multiGet([key1,key2])=>[[key1,value1],[key2,value2]],如此转换关系而已... results is a [[],[],[]],二维数组
+                                results.map((value, index, arrays) => {
+                                    favoriteItems.push(JSON.parse(arrays[index][1]));
+                                });
+                            }
+                            console.log("All Items:" + this.favoriteKey + "\n" + favoriteItems);
+                        }));
+                    }
+                    resolve(favoriteItems);
+
                 })
                 .catch(e => {
                     reject(e);

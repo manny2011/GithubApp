@@ -30,6 +30,8 @@ class FavoriteTabPage extends React.Component {
         const {collectionData} = this.props;
         const data = collectionData[this.flag];
         const {items, isLoading} = data;
+        if(!items)
+            return null;
         let Item = this.flag === POPULAR ? ListItem : TrendItem;
         return <View style={styles.container}>
             <FlatList
@@ -38,7 +40,15 @@ class FavoriteTabPage extends React.Component {
                                               favoriteDao={this.favoriteDao}
                                               onItemPress={item => NavigationUtil.navigation.navigate('DetailPage', {projectModel: item})}/>
                 }
-                keyExtractor={(item) => item.id}
+                keyExtractor={(item) => {
+                    if(item){
+                        if(item.id){
+                            return item.id;
+                        }else{
+                            return item.fullName;
+                        }
+                    }
+                }}
                 refreshControl={
                     <RefreshControl
                         title={'loading'}

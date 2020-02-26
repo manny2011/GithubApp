@@ -89,12 +89,14 @@ export function fetchData(tabName, url, pageSize) {
 function handleDataWithFavoriteCheck(data,callback) {//Array[] 在此处对data array进行是否收藏进行处理，添加isFavorite字段
     new FavoriteDao(POPULAR).getFavoriteKeys()
         .then(favoriteKeys => {
-            for (let i = 0; i < data.items.length; i++) {
-                data.items[i].isFavorite = false;
-                for (let j = 0; j < favoriteKeys.length; j++) {
-                    if (favoriteKeys[j] === data.items[i].id.toString()) {
-                        data.items[i].isFavorite = true;
-                        break;
+            if(favoriteKeys){
+                for (let i = 0; i < data.items.length; i++) {
+                    data.items[i].isFavorite = false;
+                    for (let j = 0; j < favoriteKeys.length; j++) {
+                        if (favoriteKeys[j] === data.items[i].id.toString()) {
+                            data.items[i].isFavorite = true;
+                            break;
+                        }
                     }
                 }
             }
