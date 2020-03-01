@@ -1,5 +1,5 @@
 import React from 'react';
-import FavoriteDao, {POPULAR} from '../dao/FavoriteDao';
+import FavoriteDao, {POPULAR, TRENDING} from '../dao/FavoriteDao';
 import actions from '../action';
 import {ActivityIndicator, FlatList, RefreshControl, StyleSheet, Text, View} from 'react-native';
 import ListItem from './ListItem';
@@ -8,17 +8,28 @@ import {connect} from 'react-redux';
 import collectionData from '../reducer/collection';
 import {collection_load_data_async} from '../action/collection';
 import TrendItem from './TrendItem';
+import EventBus from 'react-native-event-bus';
+import EventType from '../event/EventType';
 
 class FavoriteTabPage extends React.Component {
 
     constructor(props) {
         super(props);
         this.flag = this.props.flag;
-        this.favoriteDao = new FavoriteDao(POPULAR);
+        this.favoriteDao = new FavoriteDao(this.flag);//就是此处的问题，最新与收藏界面分别用的是不同的Dao,此处通过flag来区分的；
     }
 
     componentDidMount(): void {
         this._loadData();
+        EventBus.getInstance().addListener(EventType.bottom_tab_select,this.listener = (params)=>{
+            if(params && params.to ===2){
+                this._loadData();
+            }
+        })
+    }
+
+    componentWillUnmount(): void {
+        EventBus.getInstance().removeListener(this.listener);
     }
 
     _loadData() {
@@ -32,6 +43,9 @@ class FavoriteTabPage extends React.Component {
         const {items, isLoading} = data;
         if(!items)
             return null;
+        if(this.flag === TRENDING){
+            console.log("trending items: "+items);
+        }
         let Item = this.flag === POPULAR ? ListItem : TrendItem;
         return <View style={styles.container}>
             <FlatList

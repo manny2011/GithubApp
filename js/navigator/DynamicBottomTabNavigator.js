@@ -11,6 +11,8 @@ import {createAppContainer} from 'react-navigation';
 import TabBarBottom from 'react-navigation-tabs/src/views/BottomTabBar';
 import {connect} from 'react-redux';
 import {onThemeChange} from '../action/index';
+import EventBus from 'react-native-event-bus';
+import EventType from '../event/EventType';
 
 const ROUTES = {
     PopularPage: {
@@ -93,7 +95,15 @@ class DynamicBottomTabNavigator extends React.Component {
         //对于JSX语法，return 返回的对象必须是一个<View></View>jsx对象，
         // 或者是一个自定义组件<SomeComponent/>
         this.nav = createAppContainer(topNav);//此处包装后就是一个Component,<Component/>如此引用
-        return <this.nav/>;
+        return <this.nav
+            onNavigationStateChange={(prevState, newState, action) => {
+                EventBus.getInstance().fireEvent(EventType.bottom_tab_select, {//发送底部tab切换的事件
+                    from: prevState.index,
+                    to: newState.index,
+                });
+            }}//注意这个属性，属于谁，是如何往下传递的？和react-native-webview中的onNavigationStateChange的区别
+
+        />;
     }
 }
 
