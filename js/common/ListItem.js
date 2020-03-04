@@ -36,7 +36,6 @@ export default class ListItem extends BaseItem {
                 <View style={styles.bottomContainer}>
                     <View style={{flexDirection: 'row'}}>
                         <Text>Author:</Text>
-                        <Image style={{width: 22, height: 22}} source={{uri: item.owner.avatar_url}}/>
                     </View>
 
                     <Text>

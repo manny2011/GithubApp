@@ -35,6 +35,7 @@ export function collection_load_data_async(flag) {
             .then(items=>{
                 dispatch(collection_load_data_success(flag,items));
             }).catch(err=>{
+                console.log(err);
                 dispatch(collection_load_data_failed(flag));
         })
     }

@@ -35,7 +35,6 @@ export default class TrendItem extends BaseItem {
                 <View style={styles.bottomContainer}>
                     <View style={{flexDirection: 'row'}}>
                         <Text>Author:</Text>
-                        <Image style={{width: 22, height: 22}} source={{uri: item.contributors[0]}}/>
                     </View>
 
                     <Text>

@@ -19,7 +19,7 @@ class FavoriteTabPage extends React.Component {
         this.favoriteDao = new FavoriteDao(this.flag);//就是此处的问题，最新与收藏界面分别用的是不同的Dao,此处通过flag来区分的；
     }
 
-    componentDidMount(): void {
+    componentDidMount() {
         this._loadData();
         EventBus.getInstance().addListener(EventType.bottom_tab_select,this.listener = (params)=>{
             if(params && params.to ===2){
