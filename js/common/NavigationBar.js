@@ -46,8 +46,8 @@ export default class NavigationBar extends React.Component {
         title: 'default title',
         isStatusBarHide:false,
     };
-
-    render() {
+        
+        render() {
         let statusBar = this.props.isStatusBarHide ? null :
             (<View styles={styles.statusBarContainerStyle}>
                 <StatusBar {...this.props.statusBar}/>

@@ -1,0 +1,573 @@
+
+{
+  "header": {
+    "reportVersion": 1,
+    "event": "Allocation failed - JavaScript heap out of memory",
+    "trigger": "FatalError",
+    "filename": "report.20200304.160335.4272.0.001.json",
+    "dumpEventTime": "2020-03-04T16:03:35Z",
+    "dumpEventTimeStamp": "1583309015923",
+    "processId": 4272,
+    "cwd": "C:\\Users\\zhangyc\\GithubApp",
+    "commandLine": [
+      "node",
+      "C:\\Users\\zhangyc\\GithubApp\\node_modules\\.bin\\\\..\\react-native\\cli.js",
+      "start"
+    ],
+    "nodejsVersion": "v12.7.0",
+    "wordSize": 64,
+    "arch": "x64",
+    "platform": "win32",
+    "componentVersions": {
+      "node": "12.7.0",
+      "v8": "7.5.288.22-node.16",
+      "uv": "1.30.1",
+      "zlib": "1.2.11",
+      "brotli": "1.0.7",
+      "ares": "1.15.0",
+      "modules": "72",
+      "nghttp2": "1.39.1",
+      "napi": "4",
+      "llhttp": "1.1.4",
+      "http_parser": "2.8.0",
+      "openssl": "1.1.1c",
+      "cldr": "35.1",
+      "icu": "64.2",
+      "tz": "2019a",
+      "unicode": "12.1"
+    },
+    "release": {
+      "name": "node",
+      "headersUrl": "https://nodejs.org/download/release/v12.7.0/node-v12.7.0-headers.tar.gz",
+      "sourceUrl": "https://nodejs.org/download/release/v12.7.0/node-v12.7.0.tar.gz",
+      "libUrl": "https://nodejs.org/download/release/v12.7.0/win-x64/node.lib"
+    },
+    "osName": "Windows_NT",
+    "osRelease": "10.0.17134",
+    "osVersion": "Windows 10 Pro",
+    "osMachine": "x86_64",
+    "cpus": [
+      {
+        "model": "Intel(R) Core(TM) i7-7500U CPU @ 2.70GHz",
+        "speed": 2904,
+        "user": 27064468,
+        "nice": 0,
+        "sys": 22690968,
+        "idle": 510973375,
+        "irq": 4751796
+      },
+      {
+        "model": "Intel(R) Core(TM) i7-7500U CPU @ 2.70GHz",
+        "speed": 2904,
+        "user": 27064468,
+        "nice": 0,
+        "sys": 22690968,
+        "idle": 510973375,
+        "irq": 4751796
+      },
+      {
+        "model": "Intel(R) Core(TM) i7-7500U CPU @ 2.70GHz",
+        "speed": 2904,
+        "user": 27064468,
+        "nice": 0,
+        "sys": 22690968,
+        "idle": 510973375,
+        "irq": 4751796
+      },
+      {
+        "model": "Intel(R) Core(TM) i7-7500U CPU @ 2.70GHz",
+        "speed": 2904,
+        "user": 27064468,
+        "nice": 0,
+        "sys": 22690968,
+        "idle": 510973375,
+        "irq": 4751796
+      }
+    ],
+    "host": "DESKTOP-CDB0JFB"
+  },
+  "javascriptStack": {
+    "message": "No stack.",
+    "stack": [
+      "Unavailable."
+    ]
+  },
+  "nativeStack": [
+    {
+      "pc": "0x00007ff6dd526b89",
+      "symbol": "std::basic_ostream<char,std::char_traits<char> >::operator<<+10841"
+    },
+    {
+      "pc": "0x00007ff6dd52a4fc",
+      "symbol": "std::basic_ostream<char,std::char_traits<char> >::operator<<+25548"
+    },
+    {
+      "pc": "0x00007ff6dd5294a8",
+      "symbol": "std::basic_ostream<char,std::char_traits<char> >::operator<<+21368"
+    },
+    {
+      "pc": "0x00007ff6dd6133db",
+      "symbol": "v8::base::CPU::has_sse+37691"
+    },
+    {
+      "pc": "0x00007ff6dddfa3de",
+      "symbol": "v8::Isolate::ReportExternalAllocationLimitReached+94"
+    },
+    {
+      "pc": "0x00007ff6ddde272a",
+      "symbol": "v8::SharedArrayBuffer::Externalize+842"
+    },
+    {
+      "pc": "0x00007ff6ddc73e3c",
+      "symbol": "v8::internal::Heap::EphemeronKeyWriteBarrierFromCode+1436"
+    },
+    {
+      "pc": "0x00007ff6ddc7bd6f",
+      "symbol": "v8::internal::Heap::OldGenerationSizeOfObjects+4895"
+    },
+    {
+      "pc": "0x00007ff6ddc72003",
+      "symbol": "v8::internal::Heap::CollectGarbage+1235"
+    },
+    {
+      "pc": "0x00007ff6ddc70894",
+      "symbol": "v8::internal::Heap::AddRetainedMap+2292"
+    },
+    {
+      "pc": "0x00007ff6ddc8f375",
+      "symbol": "v8::internal::Factory::NewFillerObject+53"
+    },
+    {
+      "pc": "0x00007ff6dda456ed",
+      "symbol": "v8::internal::interpreter::JumpTableTargetOffsets::iterator::operator=+3757"
+    },
+    {
+      "pc": "0x00007ff6de21982d",
+      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+614605"
+    },
+    {
+      "pc": "0x00007ff6de1cf1f3",
+      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+309907"
+    },
+    {
+      "pc": "0x00007ff6de1ccd95",
+      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+300597"
+    },
+    {
+      "pc": "0x00007ff6de18950a",
+      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+23978"
+    },
+    {
+      "pc": "0x00007ff6de26dbd4",
+      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+959604"
+    },
+    {
+      "pc": "0x00007ff6de18dcdc",
+      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+42364"
+    },
+    {
+      "pc": "0x00007ff6de1e20e2",
+      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+387458"
+    },
+    {
+      "pc": "0x00007ff6de1accd2",
+      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+169330"
+    },
+    {
+      "pc": "0x00007ff6de18b4fc",
+      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+32156"
+    },
+    {
+      "pc": "0x00007ff6ddcbf7f4",
+      "symbol": "v8::internal::StackGuard::InitThread+1156"
+    },
+    {
+      "pc": "0x00007ff6ddcbf903",
+      "symbol": "v8::internal::StackGuard::InitThread+1427"
+    },
+    {
+      "pc": "0x00007ff6ddcbffd2",
+      "symbol": "v8::internal::Execution::TryCall+354"
+    },
+    {
+      "pc": "0x00007ff6ddb982e5",
+      "symbol": "v8::internal::MicrotaskQueue::RunMicrotasks+517"
+    },
+    {
+      "pc": "0x00007ff6de18e8ac",
+      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+45388"
+    },
+    {
+      "pc": "0x00000330b10adc73",
+      "symbol": ""
+    }
+  ],
+  "javascriptHeap": {
+    "totalMemory": 119779328,
+    "totalCommittedMemory": 119779328,
+    "usedMemory": 109712344,
+    "availableMemory": 2087960880,
+    "memoryLimit": 2197815296,
+    "heapSpaces": {
+      "read_only_space": {
+        "memorySize": 262144,
+        "committedMemory": 262144,
+        "capacity": 261832,
+        "used": 31960,
+        "available": 229872
+      },
+      "new_space": {
+        "memorySize": 1048576,
+        "committedMemory": 1048576,
+        "capacity": 1047328,
+        "used": 1047264,
+        "available": 64
+      },
+      "old_space": {
+        "memorySize": 95825920,
+        "committedMemory": 95825920,
+        "capacity": 95552480,
+        "used": 88081400,
+        "available": 7471080
+      },
+      "code_space": {
+        "memorySize": 950272,
+        "committedMemory": 950272,
+        "capacity": 887168,
+        "used": 745600,
+        "available": 141568
+      },
+      "map_space": {
+        "memorySize": 3149824,
+        "committedMemory": 3149824,
+        "capacity": 3145448,
+        "used": 1422240,
+        "available": 1723208
+      },
+      "large_object_space": {
+        "memorySize": 17797120,
+        "committedMemory": 17797120,
+        "capacity": 17692216,
+        "used": 17692216,
+        "available": 0
+      },
+      "code_large_object_space": {
+        "memorySize": 49152,
+        "committedMemory": 49152,
+        "capacity": 3456,
+        "used": 3456,
+        "available": 0
+      },
+      "new_large_object_space": {
+        "memorySize": 696320,
+        "committedMemory": 696320,
+        "capacity": 1047328,
+        "used": 688208,
+        "available": 359120
+      }
+    }
+  },
+  "resourceUsage": {
+    "userCpuSeconds": 19.937,
+    "kernelCpuSeconds": 9.921,
+    "cpuConsumptionPercent": 0.199492,
+    "maxRss": 247164928,
+    "pageFaults": {
+      "IORequired": 200250,
+      "IONotRequired": 0
+    },
+    "fsActivity": {
+      "reads": 2989,
+      "writes": 22
+    }
+  },
+  "libuv": [
+  ],
+  "environmentVariables": {
+    "=C:": "C:\\Users\\zhangyc\\GithubApp",
+    "ALLUSERSPROFILE": "C:\\ProgramData",
+    "ANDROID_HOME": "D:\\Android\\sdk",
+    "APPDATA": "C:\\Users\\zhangyc\\AppData\\Roaming",
+    "ChocolateyInstall": "C:\\ProgramData\\chocolatey",
+    "ChocolateyLastPathUpdate": "132170675239359676",
+    "CLASSPATH": ".;C:\\Program Files\\Java\\jdk1.8.0_91\\lib\\dt.jar;C:\\Program Files\\Java\\jdk1.8.0_91\\lib\\tools.jar;",
+    "CommonProgramFiles": "C:\\Program Files\\Common Files",
+    "CommonProgramFiles(x86)": "C:\\Program Files (x86)\\Common Files",
+    "CommonProgramW6432": "C:\\Program Files\\Common Files",
+    "COMPUTERNAME": "DESKTOP-CDB0JFB",
+    "ComSpec": "C:\\WINDOWS\\system32\\cmd.exe",
+    "dp0": "C:\\Users\\zhangyc\\GithubApp\\node_modules\\.bin\\",
+    "DriverData": "C:\\Windows\\System32\\Drivers\\DriverData",
+    "FLUTTER_STORAGE_BASE_URL": "https://storage.flutter-io.cn",
+    "FPS_BROWSER_APP_PROFILE_STRING": "Internet Explorer",
+    "FPS_BROWSER_USER_PROFILE_STRING": "Default",
+    "HADOOP_HOME": "D:\\hadoop-2.7.1",
+    "HOME": "C:\\Users\\zhangyc",
+    "HOMEDRIVE": "C:",
+    "HOMEPATH": "\\Users\\zhangyc",
+    "INIT_CWD": "C:\\Users\\zhangyc\\GithubApp",
+    "INTEL_DEV_REDIST": "C:\\Program Files (x86)\\Common Files\\Intel\\Shared Libraries\\",
+    "JAVA_HOME": "C:\\Program Files\\Java\\jdk1.8.0_91",
+    "LANG": "zh_CN.UTF-8",
+    "LOCALAPPDATA": "C:\\Users\\zhangyc\\AppData\\Local",
+    "LOGONSERVER": "\\\\DESKTOP-CDB0JFB",
+    "MIC_LD_LIBRARY_PATH": "C:\\Program Files (x86)\\Common Files\\Intel\\Shared Libraries\\compiler\\lib\\mic",
+    "NODE": "C:\\Program Files\\nodejs\\node.exe",
+    "NODE_EXE": "C:\\Program Files\\nodejs\\\\node.exe",
+    "NODE_PATH": "D:\\Program Files\\nodejs\\node_global\\node_modules",
+    "NPM_CLI_JS": "D:\\Program Files\\nodejs\\node_global\\node_modules\\npm\\bin\\npm-cli.js",
+    "npm_config_access": "",
+    "npm_config_allow_same_version": "",
+    "npm_config_also": "",
+    "npm_config_always_auth": "",
+    "npm_config_argv": "{\"remain\":[],\"cooked\":[\"start\"],\"original\":[\"start\"]}",
+    "npm_config_audit": "true",
+    "npm_config_audit_level": "low",
+    "npm_config_auth_type": "legacy",
+    "npm_config_before": "",
+    "npm_config_bin_links": "true",
+    "npm_config_browser": "",
+    "npm_config_ca": "",
+    "npm_config_cache": "D:\\Program Files\\nodejs\\node_cache",
+    "npm_config_cache_lock_retries": "10",
+    "npm_config_cache_lock_stale": "60000",
+    "npm_config_cache_lock_wait": "10000",
+    "npm_config_cache_max": "Infinity",
+    "npm_config_cache_min": "10",
+    "npm_config_cafile": "",
+    "npm_config_cert": "",
+    "npm_config_cidr": "",
+    "npm_config_color": "true",
+    "npm_config_commit_hooks": "true",
+    "npm_config_depth": "Infinity",
+    "npm_config_description": "true",
+    "npm_config_dev": "",
+    "npm_config_dry_run": "",
+    "npm_config_editor": "notepad.exe",
+    "npm_config_engine_strict": "",
+    "npm_config_fetch_retries": "2",
+    "npm_config_fetch_retry_factor": "10",
+    "npm_config_fetch_retry_maxtimeout": "60000",
+    "npm_config_fetch_retry_mintimeout": "10000",
+    "npm_config_force": "",
+    "npm_config_format_package_lock": "true",
+    "npm_config_git": "git",
+    "npm_config_git_tag_version": "true",
+    "npm_config_global": "",
+    "npm_config_globalconfig": "D:\\Program Files\\nodejs\\node_global\\etc\\npmrc",
+    "npm_config_globalignorefile": "D:\\Program Files\\nodejs\\node_global\\etc\\npmignore",
+    "npm_config_global_style": "",
+    "npm_config_group": "",
+    "npm_config_ham_it_up": "",
+    "npm_config_heading": "npm",
+    "npm_config_https_proxy": "",
+    "npm_config_if_present": "",
+    "npm_config_ignore_prepublish": "",
+    "npm_config_ignore_scripts": "",
+    "npm_config_init_author_email": "",
+    "npm_config_init_author_name": "",
+    "npm_config_init_author_url": "",
+    "npm_config_init_license": "ISC",
+    "npm_config_init_module": "C:\\Users\\zhangyc\\.npm-init.js",
+    "npm_config_init_version": "1.0.0",
+    "npm_config_json": "",
+    "npm_config_key": "",
+    "npm_config_legacy_bundling": "",
+    "npm_config_link": "",
+    "npm_config_local_address": "",
+    "npm_config_loglevel": "notice",
+    "npm_config_logs_max": "10",
+    "npm_config_long": "",
+    "npm_config_maxsockets": "50",
+    "npm_config_message": "%s",
+    "npm_config_metrics_registry": "https://registry.npm.taobao.org/",
+    "npm_config_node_gyp": "D:\\Program Files\\nodejs\\node_global\\node_modules\\npm\\node_modules\\node-gyp\\bin\\node-gyp.js",
+    "npm_config_node_options": "",
+    "npm_config_node_version": "12.7.0",
+    "npm_config_noproxy": "",
+    "npm_config_offline": "",
+    "npm_config_onload_script": "",
+    "npm_config_only": "",
+    "npm_config_optional": "true",
+    "npm_config_otp": "",
+    "npm_config_package_lock": "true",
+    "npm_config_package_lock_only": "",
+    "npm_config_parseable": "",
+    "npm_config_prefer_offline": "",
+    "npm_config_prefer_online": "",
+    "npm_config_prefix": "D:\\Program Files\\nodejs\\node_global",
+    "npm_config_preid": "",
+    "npm_config_production": "",
+    "npm_config_progress": "true",
+    "npm_config_proxy": "",
+    "npm_config_read_only": "",
+    "npm_config_rebuild_bundle": "true",
+    "npm_config_registry": "https://registry.npm.taobao.org/",
+    "npm_config_rollback": "true",
+    "npm_config_save": "true",
+    "npm_config_save_bundle": "",
+    "npm_config_save_dev": "",
+    "npm_config_save_exact": "",
+    "npm_config_save_optional": "",
+    "npm_config_save_prefix": "^",
+    "npm_config_save_prod": "",
+    "npm_config_scope": "",
+    "npm_config_scripts_prepend_node_path": "warn-only",
+    "npm_config_script_shell": "",
+    "npm_config_searchexclude": "",
+    "npm_config_searchlimit": "20",
+    "npm_config_searchopts": "",
+    "npm_config_searchstaleness": "900",
+    "npm_config_send_metrics": "",
+    "npm_config_shell": "C:\\WINDOWS\\system32\\cmd.exe",
+    "npm_config_shrinkwrap": "true",
+    "npm_config_sign_git_commit": "",
+    "npm_config_sign_git_tag": "",
+    "npm_config_sso_poll_frequency": "500",
+    "npm_config_sso_type": "oauth",
+    "npm_config_strict_ssl": "true",
+    "npm_config_tag": "latest",
+    "npm_config_tag_version_prefix": "v",
+    "npm_config_timing": "",
+    "npm_config_tmp": "C:\\Users\\zhangyc\\AppData\\Local\\Temp",
+    "npm_config_umask": "0000",
+    "npm_config_unicode": "",
+    "npm_config_unsafe_perm": "true",
+    "npm_config_update_notifier": "true",
+    "npm_config_usage": "",
+    "npm_config_user": "",
+    "npm_config_userconfig": "C:\\Users\\zhangyc\\.npmrc",
+    "npm_config_user_agent": "npm/6.12.1 node/v12.7.0 win32 x64",
+    "npm_config_version": "",
+    "npm_config_versions": "",
+    "npm_config_viewer": "browser",
+    "npm_execpath": "D:\\Program Files\\nodejs\\node_global\\node_modules\\npm\\bin\\npm-cli.js",
+    "npm_lifecycle_event": "start",
+    "npm_lifecycle_script": "react-native start",
+    "npm_node_execpath": "C:\\Program Files\\nodejs\\node.exe",
+    "npm_package_dependencies_GitHubTrending": "^3.1.3",
+    "npm_package_dependencies_prop_types": "^15.7.2",
+    "npm_package_dependencies_raven_for_redux": "^1.4.0",
+    "npm_package_dependencies_react": "16.9.0",
+    "npm_package_dependencies_react_native": "0.61.5",
+    "npm_package_dependencies_react_native_event_bus": "^1.0.0",
+    "npm_package_dependencies_react_native_gesture_handler": "^1.5.3",
+    "npm_package_dependencies_react_native_reanimated": "^1.4.0",
+    "npm_package_dependencies_react_native_screens": "^2.0.0-beta.13",
+    "npm_package_dependencies_react_native_tabs": "^1.0.9",
+    "npm_package_dependencies_react_native_vector_icons": "^6.6.0",
+    "npm_package_dependencies_react_native_webview": "^8.0.6",
+    "npm_package_dependencies_react_navigation": "^4.0.10",
+    "npm_package_dependencies_react_navigation_stack": "^1.10.3",
+    "npm_package_dependencies_react_navigation_tabs": "^2.7.0",
+    "npm_package_dependencies_react_redux": "^7.1.3",
+    "npm_package_dependencies_redux": "^4.0.5",
+    "npm_package_dependencies_redux_thunk": "^2.3.0",
+    "npm_package_dependencies__react_native_community_async_storage": "^1.7.1",
+    "npm_package_description": "GithubApp for RN\\\r 引入git来管理我们的项目，解决的问题正是：\r 在公司练习一个项目后，不需要再复制到微信，\r 然后在家里的电脑上再拷贝到项目中运行，解决问题；\r 有了git/github,直接同步到远端再拉取，保持两端代码\r 一模一样。\r 【so 漂亮】",
+    "npm_package_devDependencies_babel_jest": "24.9.0",
+    "npm_package_devDependencies_eslint": "6.7.1",
+    "npm_package_devDependencies_jest": "24.9.0",
+    "npm_package_devDependencies_metro_react_native_babel_preset": "0.56.3",
+    "npm_package_devDependencies_react_test_renderer": "16.9.0",
+    "npm_package_devDependencies__babel_core": "7.7.4",
+    "npm_package_devDependencies__babel_runtime": "7.7.4",
+    "npm_package_devDependencies__react_native_community_eslint_config": "0.0.5",
+    "npm_package_gitHead": "e298ef29caedf3ac56c28109cf53de45c932ab18",
+    "npm_package_jest_preset": "react-native",
+    "npm_package_name": "GithubApp",
+    "npm_package_private": "true",
+    "npm_package_readmeFilename": "README.md",
+    "npm_package_scripts_android": "react-native run-android",
+    "npm_package_scripts_ios": "react-native run-ios",
+    "npm_package_scripts_lint": "eslint .",
+    "npm_package_scripts_start": "react-native start",
+    "npm_package_scripts_test": "jest",
+    "npm_package_version": "0.0.1",
+    "NPM_PREFIX_NPM_CLI_JS": "D:\\Program Files\\nodejs\\node_global\\node_modules\\npm\\bin\\npm-cli.js",
+    "NUMBER_OF_PROCESSORS": "4",
+    "OneDrive": "C:\\Users\\zhangyc\\OneDrive",
+    "OneDriveConsumer": "C:\\Users\\zhangyc\\OneDrive",
+    "OS": "Windows_NT",
+    "Path": "D:\\Program Files\\nodejs\\node_global\\node_modules\\npm\\node_modules\\npm-lifecycle\\node-gyp-bin;C:\\Users\\zhangyc\\GithubApp\\node_modules\\.bin;C:\\src\\flutter\\bin;C:\\Python27\\;C:\\Python27\\Scripts;C:\\Program Files (x86)\\Common Files\\Intel\\Shared Libraries\\redist\\intel64\\compiler;C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;D:\\Program Files\\Git\\cmd;C:\\Program Files\\Java\\jdk1.8.0_91\\bin;C:\\Program Files\\TortoiseSVN\\bin;D:\\Android\\sdk\\platform-tools;D:\\Android\\sdk\\tools;C:\\WINDOWS\\System32\\OpenSSH\\;D:\\hadoop-2.7.1\\bin;D:\\Program Files\\Microsoft VS Code\\bin;C:\\ProgramData\\chocolatey\\bin;C:\\Program Files\\nodejs\\;D:\\Program Files\\nodejs\\node_global\\node_modules\\yarn\\bin;C:\\Program Files\\dotnet\\;C:\\Program Files\\Microsoft SQL Server\\130\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\;C:\\Program Files (x86)\\Yarn\\bin\\;C:\\Program Files (x86)\\Yarn\\bin;C:\\Users\\zhangyc\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\zhangyc\\AppData\\Local\\GitHubDesktop\\bin;C:\\Users\\zhangyc\\AppData\\Local\\Microsoft\\WindowsApps;D:\\Program Files\\nodejs\\node_global;;D:\\Program Files\\Microsoft VS Code\\bin;C:\\Users\\zhangyc\\AppData\\Roaming\\npm;C:\\Users\\zhangyc\\AppData\\Local\\Yarn\\bin",
+    "PATHEXT": ".COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JSE;.WSF;.WSH;.MSC;.CPL",
+    "PROCESSOR_ARCHITECTURE": "AMD64",
+    "PROCESSOR_IDENTIFIER": "Intel64 Family 6 Model 142 Stepping 9, GenuineIntel",
+    "PROCESSOR_LEVEL": "6",
+    "PROCESSOR_REVISION": "8e09",
+    "ProgramData": "C:\\ProgramData",
+    "ProgramFiles": "C:\\Program Files",
+    "ProgramFiles(x86)": "C:\\Program Files (x86)",
+    "ProgramW6432": "C:\\Program Files",
+    "PROMPT": "$P$G",
+    "PSModulePath": "C:\\Users\\zhangyc\\Documents\\WindowsPowerShell\\Modules;C:\\Program Files\\WindowsPowerShell\\Modules;C:\\WINDOWS\\system32\\WindowsPowerShell\\v1.0\\Modules",
+    "PUBLIC": "C:\\Users\\Public",
+    "PUB_HOSTED_URL": "https://pub.flutter-io.cn",
+    "SESSIONNAME": "Console",
+    "SystemDrive": "C:",
+    "SystemRoot": "C:\\WINDOWS",
+    "TEMP": "C:\\Users\\zhangyc\\AppData\\Local\\Temp",
+    "TERM_PROGRAM": "vscode",
+    "TERM_PROGRAM_VERSION": "1.35.1",
+    "TMP": "C:\\Users\\zhangyc\\AppData\\Local\\Temp",
+    "USERDOMAIN": "DESKTOP-CDB0JFB",
+    "USERDOMAIN_ROAMINGPROFILE": "DESKTOP-CDB0JFB",
+    "USERNAME": "zhangyc",
+    "USERPROFILE": "C:\\Users\\zhangyc",
+    "windir": "C:\\WINDOWS",
+    "_prog": "node"
+  },
+  "sharedObjects": [
+    "C:\\Program Files\\nodejs\\node.exe",
+    "C:\\WINDOWS\\SYSTEM32\\ntdll.dll",
+    "C:\\WINDOWS\\System32\\KERNEL32.DLL",
+    "C:\\WINDOWS\\System32\\KERNELBASE.dll",
+    "C:\\WINDOWS\\System32\\WS2_32.dll",
+    "C:\\WINDOWS\\System32\\RPCRT4.dll",
+    "C:\\WINDOWS\\System32\\ADVAPI32.dll",
+    "C:\\WINDOWS\\SYSTEM32\\dbghelp.dll",
+    "C:\\WINDOWS\\System32\\msvcrt.dll",
+    "C:\\WINDOWS\\System32\\ucrtbase.dll",
+    "C:\\WINDOWS\\System32\\sechost.dll",
+    "C:\\WINDOWS\\System32\\USER32.dll",
+    "C:\\WINDOWS\\System32\\win32u.dll",
+    "C:\\WINDOWS\\System32\\GDI32.dll",
+    "C:\\WINDOWS\\System32\\gdi32full.dll",
+    "C:\\WINDOWS\\System32\\msvcp_win.dll",
+    "C:\\WINDOWS\\System32\\PSAPI.DLL",
+    "C:\\WINDOWS\\System32\\CRYPT32.dll",
+    "C:\\WINDOWS\\System32\\MSASN1.dll",
+    "C:\\WINDOWS\\SYSTEM32\\IPHLPAPI.DLL",
+    "C:\\WINDOWS\\SYSTEM32\\USERENV.dll",
+    "C:\\WINDOWS\\System32\\profapi.dll",
+    "C:\\WINDOWS\\SYSTEM32\\bcrypt.dll",
+    "C:\\WINDOWS\\SYSTEM32\\WINMM.dll",
+    "C:\\WINDOWS\\SYSTEM32\\WINMMBASE.dll",
+    "C:\\WINDOWS\\System32\\cfgmgr32.dll",
+    "C:\\WINDOWS\\System32\\IMM32.DLL",
+    "C:\\WINDOWS\\System32\\powrprof.dll",
+    "C:\\WINDOWS\\system32\\uxtheme.dll",
+    "C:\\WINDOWS\\System32\\combase.dll",
+    "C:\\WINDOWS\\System32\\bcryptPrimitives.dll",
+    "C:\\Program Files (x86)\\Sangfor\\SSL\\ClientComponent\\1_SangforTcpX64.dll",
+    "C:\\WINDOWS\\System32\\ole32.dll",
+    "C:\\WINDOWS\\System32\\OLEAUT32.dll",
+    "C:\\WINDOWS\\System32\\SHLWAPI.dll",
+    "C:\\WINDOWS\\System32\\WINTRUST.dll",
+    "C:\\WINDOWS\\SYSTEM32\\VERSION.dll",
+    "C:\\WINDOWS\\system32\\mswsock.dll",
+    "C:\\WINDOWS\\System32\\kernel.appcore.dll",
+    "C:\\WINDOWS\\system32\\napinsp.dll",
+    "C:\\WINDOWS\\system32\\pnrpnsp.dll",
+    "C:\\WINDOWS\\system32\\NLAapi.dll",
+    "C:\\WINDOWS\\SYSTEM32\\DNSAPI.dll",
+    "C:\\WINDOWS\\System32\\NSI.dll",
+    "C:\\WINDOWS\\System32\\winrnr.dll",
+    "C:\\WINDOWS\\System32\\wshbth.dll",
+    "C:\\WINDOWS\\SYSTEM32\\CRYPTBASE.DLL",
+    "C:\\WINDOWS\\SYSTEM32\\dhcpcsvc6.DLL",
+    "C:\\WINDOWS\\SYSTEM32\\dhcpcsvc.DLL",
+    "C:\\Windows\\System32\\rasadhlp.dll",
+    "C:\\WINDOWS\\System32\\fwpuclnt.dll"
+  ]
+}

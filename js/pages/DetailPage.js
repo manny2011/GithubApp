@@ -29,11 +29,11 @@ export default class DetailPage extends Component {
         this._goBack = this.goBack.bind(this);//此处的function必须显式绑定下当前对象，否则在backHandler回调环境中的this已经不再是指向当前DetailPage对象了。
     }
 
-    componentDidMount(): void {
+    componentDidMount() {
         this.backHandler = BackHandler.addEventListener('hardwareBackPress', this._goBack);//对比于：goBack()此处需要传递的是一个Function引用，加上括号就成了在addListener()函数执行时，直接执行这个函数了
     }
 
-    componentWillUnmount(): void {
+    componentWillUnmount() {
         this.backHandler.remove();
     }
 
