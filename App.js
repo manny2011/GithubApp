@@ -16,18 +16,19 @@ import {
     StatusBar,
 } from 'react-native';
 
-import {Provider} from 'react-redux';
+import { Provider } from 'react-redux';
 
-import {createAppContainer, createSwitchNavigator} from 'react-navigation';
-import {createStackNavigator} from 'react-navigation-stack';
+import { createAppContainer, createSwitchNavigator } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
 import SplashPage from './js/pages/SplashPage';
 import HomePage from './js/pages/HomePage';
-import {createStore, applyMiddleware} from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import rootReducers from './js/reducer/index';
 import store from './js/store/index';
 import DetailPage from './js/pages/DetailPage';
 import WebViewPage from './js/pages/WebViewPage';
 import ThemePage from './js/pages/ThemePage';
+import AboutAuthorPage from './js/pages/AboutAuthorPage';
 
 const InitNav = createStackNavigator({
     Splash: {
@@ -45,20 +46,26 @@ const MainNav = createStackNavigator({
             header: null,
         },
     },
-    DetailPage:{
-        screen:DetailPage,
-        navigationOptions:{
-            header:null,
+    DetailPage: {
+        screen: DetailPage,
+        navigationOptions: {
+            header: null,
         }
     },
-    WebViewPage:{
-        screen:WebViewPage,
-        navigationOptions:{
-            header:null,
+    WebViewPage: {
+        screen: WebViewPage,
+        navigationOptions: {
+            header: null,
         }
     },
-    ThemePage:{
-        screen:ThemePage,
+    ThemePage: {
+        screen: ThemePage,
+        navigationOptions: {
+            header: null,
+        }
+    },
+    AboutAuthorPage:{
+        screen:AboutAuthorPage,
         navigationOptions:{
             header:null,
         }
@@ -84,10 +91,10 @@ const App = createAppContainer(createSwitchNavigator({
 }));
 
 
-export default class Container extends React.Component{
+export default class Container extends React.Component {
     render() {
         return (<Provider store={store}>
-            <App/>
+            <App />
         </Provider>);
     }
 }

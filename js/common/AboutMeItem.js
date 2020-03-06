@@ -20,8 +20,8 @@ export default class AboutMeItem extends React.Component {
     return (<TouchableOpacity onPress={callback}
       style={{
         flexDirection: 'row', justifyContent: 'space-between',
-        alignItems: 'center', paddingTop: 10, paddingBottom: 10, 
-        paddingLeft: 20, paddingRight: 20,height:60
+        alignItems: 'center', paddingTop: 10, paddingBottom: 10,
+        paddingLeft: 20, paddingRight: 20, height: 60
       }}>
       <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
         <IconClass name={IconName} size={16} />

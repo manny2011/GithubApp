@@ -4,7 +4,7 @@ import actions from '../action/index';
 import { connect } from 'react-redux';
 import NavigationBar from '../common/NavigationBar';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import Menu from '../common/Menu';
+import {Menu} from '../common/Menu';
 import AboutMeItem from '../common/AboutMeItem';
 import NavigationUtil from '../common/NavigationUtil';
 
@@ -13,8 +13,10 @@ class MinePage extends Component {
         return (<View style={{ flex: 1 }}>
             <NavigationBar title={'我的'} statusBar={{ barStyle: 'light-content', hidden: false, backgroundColor: '#999' }} />
             <ScrollView overScrollMode={'always'} horizontal={false}>
-                <TouchableOpacity style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingTop: 10, 
-                height:100,paddingBottom: 10, paddingLeft: 20, paddingRight: 20 }}>
+                <TouchableOpacity style={{
+                    flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingTop: 10,
+                    height: 100, paddingBottom: 10, paddingLeft: 20, paddingRight: 20
+                }}>
                     <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
                         <Ionicons name={'logo-github'} size={40} />
                         <Text style={{ marginLeft: 10 }}>Github Popular</Text>
@@ -51,47 +53,47 @@ class MinePage extends Component {
     }
 
     onItemClick(item) {
-        let RouteName = null,params = {};
+        let RouteName = null, params = {};
         switch (item) {
             case Menu.tutorial:
-                    RouteName = 'WebViewPage';
-                    params.title = '教程';
-                    params.url = 'https://coding.m.imooc.com/classindex.html?cid=304';
-                    break;
-                // case Menu.aboutAuthor:
-                    // RouteName = 'AboutPage';
-                    // break;
-                case Menu.customTheme:
-                    // const {onShowCustomThemeView} = this.props;
-                    // onShowCustomThemeView(true);
-                    RouteName = 'ThemePage';
-                    break;
-                case Menu.CodePush:
-                    RouteName = 'CodePushPage';
-                    break;
-                case Menu.sortLabel:
-                    RouteName = 'SortKeyPage';
-                    // params.flag = FLAG_LANGUAGE.flag_key;
-                    break;
-                case Menu.sortLanguage:
-                    RouteName = 'SortKeyPage';
-                    // params.flag = FLAG_LANGUAGE.flag_language;
-                    break;
-                case Menu.customLabel:
-                case Menu.customLanguage:
-                case Menu.removeLabel:
-                    RouteName = 'CustomKeyPage';
-                    // params.isRemoveKey = menu === Menu.Remove_Key;
-                    // params.flag = menu !== Menu.Custom_Language ? FLAG_LANGUAGE.flag_key : FLAG_LANGUAGE.flag_language;
-                    break;
-                case Menu.aboutAuthor:
-                    RouteName = 'AboutMePage';
-                    break;
-                case Menu.feedback:
-                    RouteName = 'feedback';
-                    break;
+                RouteName = 'WebViewPage';
+                params.title = '教程';
+                params.url = 'https://coding.m.imooc.com/classindex.html?cid=304';
+                break;
+            // case Menu.aboutAuthor:
+            // RouteName = 'AboutPage';
+            // break;
+            case Menu.customTheme:
+                // const {onShowCustomThemeView} = this.props;
+                // onShowCustomThemeView(true);
+                RouteName = 'ThemePage';
+                break;
+            case Menu.CodePush:
+                RouteName = 'CodePushPage';
+                break;
+            case Menu.sortLabel:
+                RouteName = 'SortKeyPage';
+                // params.flag = FLAG_LANGUAGE.flag_key;
+                break;
+            case Menu.sortLanguage:
+                RouteName = 'SortKeyPage';
+                // params.flag = FLAG_LANGUAGE.flag_language;
+                break;
+            case Menu.customLabel:
+            case Menu.customLanguage:
+            case Menu.removeLabel:
+                RouteName = 'CustomKeyPage';
+                // params.isRemoveKey = menu === Menu.Remove_Key;
+                // params.flag = menu !== Menu.Custom_Language ? FLAG_LANGUAGE.flag_key : FLAG_LANGUAGE.flag_language;
+                break;
+            case Menu.aboutAuthor:
+                RouteName = 'AboutAuthorPage';
+                break;
+            case Menu.feedback:
+                RouteName = 'feedback';
+                break;
         }
-        NavigationUtil.navigation.navigate(RouteName,{...params});
+        NavigationUtil.navigation.navigate(RouteName, { ...params });
     }
 
     divider() {

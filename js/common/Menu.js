@@ -6,7 +6,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import Octicons from 'react-native-vector-icons/Octicons'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 
-export default Menu = {
+export const Menu = {
   'tutorial': { IconComponent: Ionicons, IconName: 'ios-bookmarks', Label: '教程', },
   'customLanguage': { IconComponent: Ionicons, IconName: 'md-checkbox-outline', Label: '自定义语言', },
   'sortLanguage': { IconComponent: MaterialCommunityIcons, IconName: 'sort', Label: '语言排序', },
